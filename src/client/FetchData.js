@@ -13,7 +13,8 @@ export function get(url, params) {
             method: 'GET',
             credentials: "include",
             headers: {
-                "Content-Type": "text/plain"
+                "Content-Type": "text/plain",
+                // "Content-Type": "application/json"
             },
         })
             .then((response) => {

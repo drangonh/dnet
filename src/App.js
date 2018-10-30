@@ -7,7 +7,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: ""
+            title: ""
         }
     }
 
@@ -18,6 +18,11 @@ class App extends Component {
     async getData() {
         const res = await get("/json", "");
         console.log(res)
+        if (res) {
+            this.setState({
+                title: res.title
+            })
+        }
     }
 
     render() {
@@ -34,7 +39,7 @@ class App extends Component {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Learn React
+                        Learn React{this.state.title}
                     </a>
                 </header>
             </div>
