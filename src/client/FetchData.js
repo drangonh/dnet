@@ -13,7 +13,7 @@ export function get(url, params) {
             method: 'GET',
             credentials: "include",
             headers: {
-                "Content-Type": "application/json;charset=UTF-8"
+                "Content-Type": "text/plain"
             },
         })
             .then((response) => {
@@ -24,9 +24,11 @@ export function get(url, params) {
                 }
             })
             .then((response) => {
+                console.log("请求结果", response)
                 resolve(response);
             })
             .catch((err) => {
+                console.log("请求结果", err)
                 reject({status: -1});
             })
     })
@@ -36,6 +38,7 @@ export function post(url, formData) {
     return new Promise(function (resolve, reject) {
         console.log(baseUrl + url)
         fetch(baseUrl + url, {
+            mode: "cors",
             method: 'post',
             credentials: 'include',
             headers: {

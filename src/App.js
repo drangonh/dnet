@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     async getData() {
-        const res = await get("/users/", "");
+        const res = await get("/json", "");
         console.log(res)
     }
 
