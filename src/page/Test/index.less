@@ -1,0 +1,53 @@
+@red: "red";
+@image: "../../image/";
+@f1: 24px;
+@f2: 36px;
+//使用变量
+.redC {
+  background-color: @red;
+}
+
+//嵌套
+.rbtn {
+  .redC;
+  width: 100px;
+  height: 36px;
+  .p {
+    font-size: 24px;
+  }
+}
+
+//插值
+.girl {
+  background: url("@{image}/girl.jpeg");
+}
+
+.f1 {
+  font-size: @f1;
+}
+
+.f2 {
+  font-size: @f2;
+}
+
+.h1 {
+  .f1;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  font-family: "Al Bayan";
+  color: darkslateblue;
+}
+
+.img1 {
+  width: 200px;
+  height: 300px;
+  //margin: 5px;
+}
+
+#body {
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+  align-items: center;
+}
