@@ -6,6 +6,21 @@ import './App.css';
 
 import {observable, decorate, computed, action} from "mobx";
 
+class Timer {
+    @observable start = Date.now();
+    @observable current = Date.now();
+
+    @computed
+    get elapsedTime() {
+        return this.current - this.start + "milliseconds";
+    }
+
+    @action
+    tick() {
+        this.current = Date.now();
+    }
+}
+
 class home extends Component {
     constructor(props) {
         super(props)
