@@ -69,3 +69,122 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### 在create-react-app中使用mobx
 * 参考链接(在create-react-app中使用mobx)[https://blog.csdn.net/tianxintiandisheng/article/details/103667463]
+
+### 创建项目及mobx在项目中的初步使用
+* npm install -g create-react-app
+* create-react-app dnet
+* cd dnet
+* 先提交代码到git,然后yarn eject
+* yarn add @babel/plugin-proposal-decorators --save-dev
+* 在package.json中修改babel的配置为
+```$xslt
+"babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "legacy": true }]
+      ]
+  },
+```
+* yarn add mobx --save
+* yarn add mobx-react --save
+* 最后yarn一下，安装yarn eject之后的依赖
+* 新建store文件夹，新建test.js文件，新增代码
+```$xslt
+import {observable, action} from 'mobx';
+
+class TestStore {
+    @observable name;
+    @observable age;
+
+    @action
+    changeAge = i => {
+        this.age = this.age + Number(i)
+    }
+
+    constructor() {
+        this.name = '测试mobx'
+        this.age = 30
+    }
+}
+const test = new TestStore()
+export default test
+```
+* 在store中新增index.js问价，新增代码
+```$xslt
+// 汇总store
+import test from './test'
+
+const stores = {
+    test
+}
+export default stores
+```
+* 修改入口文件
+```$xslt
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+import { Provider } from "mobx-react"
+import stores from './store/index'
+
+import {configure} from 'mobx'; // 开启严格模式
+configure({enforceActions: true}) // 开启严格模式
+
+
+ReactDOM.render(
+    <Provider {...stores}>
+        <App/>
+    </Provider>
+    , document.getElementById('root'));
+```
+* 最后在需要接收观察test的地方使用
+```$xslt
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import {observer, inject} from 'mobx-react';
+
+// inject 在模块内用 @inject('test')，将 test 注入到 props 上,保证结构的一致性
+// 使用 @observer ，将组件变为观察者，响应 name,age 状态变化。
+// 当状态变化时，组件也会做相应的更新。
+
+// 观察者
+@inject('test')
+@observer
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {test} = this.props;
+        console.log(test)
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo"/>
+                    <p>
+                        Edit <code>src/App.js</code> and save to reload.
+                    </p>
+                    <a
+                        className="App-link"
+                        href="https://reactjs.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {test.name + test.age}
+                    </a>
+                </header>
+            </div>
+        );
+    }
+}
+
+export default App;
+```
+

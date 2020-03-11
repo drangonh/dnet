@@ -10,8 +10,8 @@ class TestStore {
     }
 
     constructor() {
-        this.name = '浮云先生'
-        this.age = 25
+        this.name = '测试mobx'
+        this.age = 30
     }
 }
 const test = new TestStore()
