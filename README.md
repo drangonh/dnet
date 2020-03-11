@@ -66,3 +66,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### 在create-react-app中使用mobx
+* 参考链接(在create-react-app中使用mobx)[https://blog.csdn.net/tianxintiandisheng/article/details/103667463]
