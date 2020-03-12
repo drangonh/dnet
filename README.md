@@ -195,3 +195,7 @@ export default App;
  const target = "ABC"
  s = s.replace(new RegExp(target, "g"), "")
 ```
+
+### 如何跳出循环
+* for、for in跳出本次循环是continue，跳出整个循环是break
+* forEach跳出本次循环是return,跳出整个循环只能抛出异常
