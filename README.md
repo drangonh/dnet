@@ -188,3 +188,10 @@ class App extends React.Component {
 export default App;
 ```
 
+### js的replace记录
+* replace中使用比纳凉需要用到new RegExp对象，该对象是描述要检索的内容
+```$xslt
+ let s = "ABCABCABC"
+ const target = "ABC"
+ s = s.replace(new RegExp(target, "g"), "")
+```
