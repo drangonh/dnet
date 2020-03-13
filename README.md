@@ -69,6 +69,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### 在create-react-app中使用mobx
 * 参考链接(在create-react-app中使用mobx)[https://blog.csdn.net/tianxintiandisheng/article/details/103667463]
+* 在chrome中调试快捷键是option+command+i
 
 ### 创建项目及mobx在项目中的初步使用
 * npm install -g create-react-app
@@ -199,3 +200,136 @@ export default App;
 ### 如何跳出循环
 * for、for in跳出本次循环是continue，跳出整个循环是break
 * forEach跳出本次循环是return,跳出整个循环只能抛出异常
+
+### 性能小优化
+* this指向的写法
+```$xslt
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "dragonYellow"
+        }
+
+        //这里去bind this有个好处就是只bind一次，因为constructor只执行一次，如果写成
+        // 方式一：<p onClick={this.changeName.bind(this)}> ，意味着你每点击一次就需要bind一次，返回一个新的函数
+        
+        //这样写对性能有一点优化
+        // 方式二：this.changeName = this.changeName.bind(this)，与普通方法一起使用
+        
+        //方式三：静态方法，不需要bind的操作
+    }
+
+    //普通方法
+    changeName() {
+        this.setState({
+            name: "Edit <code>src/App.js</code> and save to reload."
+        })
+    }
+
+    //静态方法。静态方法中的this永远只想当前的实例
+     //如果调用方法的时候什么都不传递默认第一个参数是event，event在传递参数之后
+        changeName = (event) => {
+            event.preventDefault();//阻止默认行为
+            event.stopPropagation()//阻止冒泡
+            // event:SyntheticEvent(event的原型是组合时间SyntheticEvent):是react自己封装的
+            // event.nativeEvent:原声DOM的event(MouseEvent)事件对象
+            // event 是 SyntheticEvent，模拟原声DOM事件
+            // react中event所有的事件都挂载到了document上
+            // 和DOM事件不一样，和VUE的事件也不一样
+            console.log(event.target, event.currentTarget, event,event.nativeEvent);
+    
+            this.setState({
+                name: "Edit <code>src/App.js</code> and save to reload."
+            })
+        }
+```
+
+### 表单
+#### 受控组建:通过state能控制的组建
+* input textarea select用value
+* checkbox radio用checked表示是否选中，他们都是input标签中设置type值即可
+* select变迁一般和option标签一起使用
+
+### 组建传值
+* 数据一般放在最外层的组件中，底层组件复制渲染
+
+### setState
+* 不可变值，即state中数据不能直接改变
+```$xslt
+        //这样写是错误的
+        this.status.name="sad";
+        this.setState({
+            name: this.status.name
+        })
+        
+        //需要这样写
+        this.setState({
+             name: "大大说的"
+         })
+```
+* 可能是异步更新
+
+```$xslt
+//在自定义的DOM事件中和setTimeout中是同步的
+        document.body.addEventListener('click',this.changeName)
+        
+        setTimeout(()=>{
+            this.setState({
+                obj: {...this.state.obj, age: 25}
+            })
+        },0)
+        
+        setTimeout(() => {
+             this.setState({
+                obj: {...this.state.obj, age: 25}
+             })
+        
+             this.setState((preState, props) => {
+                  obj:Object.assign(preState.obj, {tight: 125})
+             })
+        
+             console.log(this.state.obj)
+        }, 0)
+```
+* 可能会被合并
+```$xslt
+            //类似于 Object.assign({num:1},{num:2})
+            //setState中参数是队友的话会被合并，只执行一次，但是实际尝试发现在组件的自带方法中仍多次执行
+            //只有在自定义方法中执行一次
+            this.setState({
+                num:this.state.num + 1
+            })
+
+            this.setState({
+                num:this.state.num + 1
+            })
+
+            this.setState({
+               num:this.state.num + 1
+            })
+            //最终num还是只加1
+```
+
+```$xslt
+        //setState参数是函数的话保证执行多次
+
+        this.setState((preState, props) => {
+            return{
+                num:preState.num + 1
+            }
+        })
+        
+        this.setState((preState, props) => {
+            console.log(preState, props)
+            return{
+                num:preState.num + 1
+            }
+
+        })
+
+        this.setState((preState, props) => {
+            return{
+                num:preState.num + 1
+            }
+        })
+```
