@@ -67,6 +67,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
+### npm管理和node版本管理
+* npm升级npm install -g npm,升级npm到最新版本
+* n stable，升级node到最新稳定版本
+
 ### 在create-react-app中使用mobx
 * 参考链接(在create-react-app中使用mobx)[https://blog.csdn.net/tianxintiandisheng/article/details/103667463]
 * 在chrome中调试快捷键是option+command+i
@@ -197,9 +201,26 @@ export default App;
  s = s.replace(new RegExp(target, "g"), "")
 ```
 
-### 如何跳出循环
+### js中的循环方法总结
+#### 普通的遍历
 * for、for in跳出本次循环是continue，跳出整个循环是break
 * forEach跳出本次循环是return,跳出整个循环只能抛出异常
+* for - 循环代码块一定的次数
+* for/in - 循环遍历对象的属性
+* while - 当指定的条件为 true 时循环指定的代码块
+* do/while - 同样当指定的条件为 true 时循环指定的代码块
+* for of:可遍历的为Array、Map Set String 、TypedArray、 函数的arguments对象 、NodeList对象。
+它可以正确响应break、continue和return语句，可以使用break跳出循环
+
+#### 返回新数组
+* map:方法返回一个新数组,不会改变原始数组
+* filter：方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素
+
+#### 检测元素
+* every:方法使用指定函数检测数组中的所有元素
+* some：如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。否则返回false
+
+
 
 ### 性能小优化
 * this指向的写法
@@ -248,7 +269,7 @@ export default App;
 #### 受控组建:通过state能控制的组建
 * input textarea select用value
 * checkbox radio用checked表示是否选中，他们都是input标签中设置type值即可
-* select变迁一般和option标签一起使用
+* select标签一般和option标签一起使用
 
 ### 组建传值
 * 数据一般放在最外层的组件中，底层组件复制渲染
@@ -333,3 +354,19 @@ export default App;
             }
         })
 ```
+
+### react高级特性
+#### 函数组件
+* ![godoc报错解决](src/image/函数组件.png)；
+* 纯函数，输入props，输出jsx
+* 没有实例，没有生命周期，没有state
+
+#### 非受控组件
+*
+
+* portals
+* context
+* 异步组件 
+* 性能优化 
+* 高阶组件HOC
+* Render Props
