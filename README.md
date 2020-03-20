@@ -264,6 +264,23 @@ export default App;
             })
         }
 ```
+* 箭头函数也能解决this指向问题，推荐changeName = (event) => {}这种写法，如果直接把箭头函数写在标签内，如：
+```
+<button onClick={()=>{this.clickButton()}}></button>
+clickButton () {
+        alert(this.state.name)
+    }
+```
+
+这样子可能会存在性能问题，该组件在每次渲染的时候都会重新创建一个不同的回调函数clickButton,并且如何把这个回调函数传递给低阶组件的话，可能在重新渲染的时候会造成低阶组件的重复渲染
+所以推荐如下写法：
+```angular2html
+<button onClick={this.clickButton}></button>
+clickButton =()=> {
+        alert(this.state.name)
+    }
+```
+
 
 ### 表单
 #### 受控组建:通过state能控制的组建
@@ -362,9 +379,25 @@ export default App;
 * 没有实例，没有生命周期，没有state
 
 #### 非受控组件
-* 
+* ref
+* defaultValue defaultChecked
+* 手动操作DOM元素
 
-* portals
+##### 非受控组件使用场景
+* 必须手动操作DOM，setState实现不了
+* 文件上传 <input type = 'file'>
+* 某些富文本编辑器，需要传入DOM元素
+* 优先使用受控组件，符合react的数据驱动视图的原则
+
+#### portals：传送门
+* 组件会按照既定层级进行嵌套渲染
+* 如何让组件渲染到父组件以外？见portalsDemo
+
+##### portals使用场景 
+* overflow:hidden
+* 父组件z-index值太小
+* fixed需要放在body第一层
+
 * context
 * 异步组件 
 * 性能优化 
