@@ -3,6 +3,9 @@ import UnControlledDemo from "../../demo/UnControlledDemo";
 
 const ContextDemo = React.lazy(() => import('./ContextDemo'))
 
+/*
+* Suspense和React.lazy、import一起实现懒加载
+* */
 class LazyDemo extends React.Component {
     constructor(props) {
         super(props)
@@ -12,7 +15,8 @@ class LazyDemo extends React.Component {
         return <div>
             <p>引入一个动态组件</p>
             <hr />
-            <React.Suspense fallback={<UnControlledDemo/>}>
+            {/*fallback:可设置加载完成之前加载的组件*/}
+            <React.Suspense fallback={<div>Loading...</div>}>
                 <ContextDemo/>
             </React.Suspense>
         </div>

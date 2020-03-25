@@ -1,6 +1,6 @@
 import React from 'react'
 
-// 创建 Context 填入默认值（任何一个 js 变量）
+// 创建 Context 填入默认值（任何一个 js 变量），'light'：共享的默认数据
 const ThemeContext = React.createContext('light')
 
 // 底层组件 - 函数是组件

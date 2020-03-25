@@ -78,7 +78,7 @@ class App extends React.Component {
                     </a>
                 </header>
 
-                <SCUDemo2/>
+                <LazyDemo/>
             </div>
         );
     }
