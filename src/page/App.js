@@ -78,7 +78,7 @@ class App extends React.Component {
                     </a>
                 </header>
 
-                <LazyDemo/>
+                <LazyDemo changeName={this.changeName}/>
             </div>
         );
     }

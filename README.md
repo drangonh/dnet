@@ -379,7 +379,7 @@ clickButton =()=> {
 * 没有实例，没有生命周期，没有state
 
 #### 非受控组件
-* ref
+* ref,createRef
 * defaultValue defaultChecked
 * 手动操作DOM元素
 

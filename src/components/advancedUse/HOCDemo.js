@@ -7,14 +7,14 @@ const withMouse = (Component) => {
             super(props)
             this.state = { x: 0, y: 0 }
         }
-  
+
         handleMouseMove = (event) => {
             this.setState({
                 x: event.clientX,
                 y: event.clientY
             })
         }
-  
+
         render() {
             return (
                 <div style={{ height: '500px' }} onMouseMove={this.handleMouseMove}>
@@ -36,6 +36,7 @@ const App = (props) => {
             <p>{a}</p>
         </div>
     )
-}
+};
+
 
 export default withMouse(App) // 返回高阶函数

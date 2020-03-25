@@ -50,7 +50,7 @@ class List extends React.PureComponent {
 }
 // props 类型检查
 List.propTypes = {
-    list: PropTypes.arrayOf(PropTypes.object).isRequired
+    list: PropTypes.any.isRequired
 }
 
 class TodoListDemo extends React.Component {
@@ -76,7 +76,7 @@ class TodoListDemo extends React.Component {
     render() {
         return <div>
             <Input submitTitle={this.onSubmitTitle}/>
-            <List list={this.state.list}/>
+            <List list={this.state.list} />
         </div>
     }
     onSubmitTitle = (title) => {
