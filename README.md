@@ -398,8 +398,44 @@ clickButton =()=> {
 * 父组件z-index值太小
 * fixed需要放在body第一层
 
-* context
-* 异步组件 
-* 性能优化 
-* 高阶组件HOC
+#### context:见ContextDemo
+* 最外层传递数据，但是逻辑不复杂
+* 重要的API:1：定义context：React.createContext('light'),2：生产context：<ThemeContext.Provider>、3消费context:
+a:class组件：ThemedButton.contextType = ThemeContext，const theme = this.context，b:函数组件
+```angular2html
+<ThemeContext.Consumer>
+        { value => <p>link's theme is {value}</p> }
+    </ThemeContext.Consumer>
+```
+
+#### 异步组件:用于组件比较大的时候，或者需要懒加载的时候
+* import()
+* React.lazy
+* React.Suspense
+
+#### 性能优化 SCU(shouldComponentUpdate的简写)的核心问题在哪里，面试重点
+* 图片懒加载
+* 打包的时候压缩js
+* SCU(shouldComponentUpdate的简写)：必须配合不可变值进行使用
+* PureComponent和React.memo，PureComponent纯组件默认在SCU时候进行浅比较，但是仍然需要配合不可变值。
+memo:函数组件中的PureComponent。浅比较已经适用大部分情况，尽量不用深度比较，因为深度比较是一次性递归，比较耗费性能
+在设计组件的时候数据层级建议不要层级太多，不容易比较数据
+* 不可变值immutable.js,彻底拥抱不可变值，基于共享数据，速度快 
+* React 默认：父组件有更新，子组件则无条件也更新！！！
+* 性能优化对于 React 更加重要！
+* SCU 一定要每次都用吗？—— 需要的时候才优化
+ 
+#### 高阶组件HOC
+* 一种模式类似装配起或者工厂模式，高阶组件包含了我们传入组件的组件
+*  
+
 * Render Props
+
+### react常用API
+* Component
+* PureComponent
+* lazy,Suspense
+* createContext
+* createRef
+* memo
+

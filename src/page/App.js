@@ -4,6 +4,9 @@ import './App.css';
 import {observer, inject} from 'mobx-react';
 import UnControlledDemo from "../demo/UnControlledDemo";
 import PortalsDemo from "../components/advancedUse/PortalsDemo";
+import ContextDemo from "../components/advancedUse/ContextDemo";
+import LazyDemo from "../components/advancedUse/LazyDemo";
+import SCUDemo2 from "../components/advancedUse/SCUDemo2";
 
 // inject 在模块内用 @inject('test')，将 test 注入到 props 上,保证结构的一致性
 // 使用 @observer ，将组件变为观察者，响应 name,age 状态变化。
@@ -23,7 +26,6 @@ class App extends React.Component {
             num: 0
         };
     }
-
 
     //静态方法。静态方法中的this永远只想当前的实例
     //如果调用方法的时候什么都不传递默认第一个参数是event
@@ -76,7 +78,7 @@ class App extends React.Component {
                     </a>
                 </header>
 
-                <PortalsDemo>你好</PortalsDemo>
+                <SCUDemo2/>
             </div>
         );
     }

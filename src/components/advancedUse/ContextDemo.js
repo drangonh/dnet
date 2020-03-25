@@ -36,7 +36,7 @@ function Toolbar(props) {
     )
 }
 
-class App extends React.Component {
+class ContextDemo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -44,6 +44,7 @@ class App extends React.Component {
         }
     }
     render() {
+        //ThemeContext.Provider生产和管理主题的数据
         return <ThemeContext.Provider value={this.state.theme}>
             <Toolbar />
             <hr/>
@@ -57,4 +58,4 @@ class App extends React.Component {
     }
 }
 
-export default App
+export default ContextDemo

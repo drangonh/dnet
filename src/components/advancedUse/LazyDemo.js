@@ -1,16 +1,18 @@
 import React from 'react'
+import UnControlledDemo from "../../demo/UnControlledDemo";
 
 const ContextDemo = React.lazy(() => import('./ContextDemo'))
 
-class App extends React.Component {
+class LazyDemo extends React.Component {
     constructor(props) {
         super(props)
     }
+
     render() {
         return <div>
             <p>引入一个动态组件</p>
             <hr />
-            <React.Suspense fallback={<div>Loading...</div>}>
+            <React.Suspense fallback={<UnControlledDemo/>}>
                 <ContextDemo/>
             </React.Suspense>
         </div>
@@ -20,4 +22,4 @@ class App extends React.Component {
     }
 }
 
-export default App
+export default LazyDemo

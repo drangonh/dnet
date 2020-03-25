@@ -50,6 +50,7 @@ class List extends React.Component {
 
     // 增加 shouldComponentUpdate
     shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps,this.props)
         // _.isEqual 做对象或者数组的深度比较（一次性递归到底）
         if (_.isEqual(nextProps.list, this.props.list)) {
             // 相等，则不重复渲染
@@ -63,7 +64,7 @@ List.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-class TodoListDemo extends React.Component {
+class SCUDemo2 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -98,7 +99,8 @@ class TodoListDemo extends React.Component {
             })
         })
 
-        // // 为了演示 SCU ，故意写的错误用法
+        // 为了演示 SCU ，故意写的错误用法,这样写会导致this.state.list发生了改变。下面的setState设置的值和目前this.state.list
+        //是一样的，然后在List组件中SCU的props就没有改变就不会刷新
         // this.state.list.push({
         //     id: `id-${Date.now()}`,
         //     title
@@ -109,4 +111,4 @@ class TodoListDemo extends React.Component {
     }
 }
 
-export default TodoListDemo
+export default SCUDemo2

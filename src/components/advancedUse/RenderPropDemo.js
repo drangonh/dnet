@@ -5,15 +5,16 @@ class Mouse extends React.Component {
     constructor(props) {
         super(props)
         this.state = { x: 0, y: 0 }
+
     }
-  
+
     handleMouseMove = (event) => {
       this.setState({
         x: event.clientX,
         y: event.clientY
       })
     }
-  
+
     render() {
       return (
         <div style={{ height: '500px' }} onMouseMove={this.handleMouseMove}>
@@ -34,7 +35,7 @@ const App = (props) => (
             /* render 是一个函数组件 */
             ({ x, y }) => <h1>The mouse position is ({x}, {y})</h1>
         }/>
-        
+
     </div>
 )
 
