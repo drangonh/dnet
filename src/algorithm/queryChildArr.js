@@ -38,6 +38,8 @@
 * 解题思路
 * 这又是一道非常直白的题目。数据提供了一个 queries 数组，其中每一个 query 其实就是在给定的 arr 数组中划定一个范围，
  * 然后我们需要做的计算就是把这个范围内的所有数字进行异或（xor）运算，最终得到这个 query 的结果。
+ * arr = [1,3,4,8], queries = [[0,1],[1,2],[0,3],[3,3]]
+ * xorQueries(arr,queries)
 */
 export const xorQueries = function(arr, queries) {
     let newArr=[]
