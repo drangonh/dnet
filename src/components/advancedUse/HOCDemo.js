@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 高阶组件
-const withMouse = (Component) => {
+export const withMouse = (Component) => {
     class withMouseComponent extends React.Component {
         constructor(props) {
             super(props)

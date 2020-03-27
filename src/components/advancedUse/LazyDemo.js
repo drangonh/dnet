@@ -11,10 +11,15 @@ class LazyDemo extends React.Component {
         super(props)
     }
 
-    render() {
+    changeName = () => {
         const {changeName} = this.props;
+        changeName && changeName()
+    }
+
+    render() {
+
         return <div>
-            <p onClick={changeName && changeName()}>引入一个动态组件</p>
+            <p onClick={this.changeName}>引入一个动态组件</p>
             <hr/>
             {/*fallback:可设置加载完成之前加载的组件*/}
             <React.Suspense fallback={<div>Loading...</div>}>
