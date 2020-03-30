@@ -489,7 +489,7 @@ memo:函数组件中的PureComponent。浅比较已经适用大部分情况，�
 * 所有事件都是挂载到document上
 * 不是原生的mouseEvent事件，是合成事件对象，是react自己封装的一个具有原生事件属性的合成
 * 为了兼容性实现合成事件
-* 挂载到document上，加少内存消耗
+* 挂载到document上，减少内存消耗
 * 方便事件的同一管理
 
 #### setState batchUpDate
@@ -510,6 +510,49 @@ memo:函数组件中的PureComponent。浅比较已经适用大部分情况，�
 ### 函数组件和class组件的区别
 * 纯函数，输入jsx，返回jsx
 * 没有生命周期，没有state，不能扩展其他方法
+
+### 常见的性能优化
+
+#### react-router 配置懒加载
+* ![懒加载](./src/image/react-router懒加载.jpeg)
+
+#### PureComponent
+* 实现了浅比较的shouldComponentUpdate,性能优化
+* 需要结合state的不可变值使用
+
+#### react性能优化
+* 渲染列表加key
+* 自定义事件、DOM事件及时销毁
+* 合理使用异步组件
+* 减少函数bind(this)的次数
+* 合理使用SCU PureComponent,memo
+* 合理使用Immutable.js
+* webpack层面的优化
+* 图片懒加载
+* 使用SSR
+
+### react和vue的区别
+
+#### 相同点
+* 都支持组件化
+* 都是数据驱动视图
+* 都使用vdom操作虚拟dom
+
+#### 区别
+* react使用jsx，vue使用模版
+* react是函数式编程，通过setState修改视图，Vue是声明式编程
+
+### webpack
+* 前端打包构建项目
+* 重点在于配置和使用
+
+### webpack相关面试题
+* 前端为何要构建和打包
+* module chunk bundle分别是什么？有什么作用？
+* loader和plugin有什么区别
+* webpack如何实现懒加载
+* babel-runtime和babel-polyfill的区别
+
 
 ### 浏览器适配
 
