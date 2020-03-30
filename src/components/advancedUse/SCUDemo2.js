@@ -64,7 +64,7 @@ List.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-class SCUDemo2 extends React.Component {
+class  SCUDemo2 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {

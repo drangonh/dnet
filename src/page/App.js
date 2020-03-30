@@ -7,7 +7,7 @@ import PortalsDemo from "../components/advancedUse/PortalsDemo";
 import ContextDemo from "../components/advancedUse/ContextDemo";
 import LazyDemo from "../components/advancedUse/LazyDemo";
 import SCUDemo2 from "../components/advancedUse/SCUDemo2";
-
+import RenderPropDemo from "../components/advancedUse/RenderPropDemo"
 // inject 在模块内用 @inject('test')，将 test 注入到 props 上,保证结构的一致性
 // 使用 @observer ，将组件变为观察者，响应 name,age 状态变化。
 // 当状态变化时，组件也会做相应的更新。
@@ -44,15 +44,15 @@ class App extends React.Component {
 
         this.setState((preState, props) => {
             console.log(preState, props)
-            return{
-                num:preState.num + 1
+            return {
+                num: preState.num + 1
             }
 
         })
 
         this.setState((preState, props) => {
-            return{
-                num:preState.num + 1
+            return {
+                num: preState.num + 1
             }
         })
     }
@@ -78,7 +78,8 @@ class App extends React.Component {
                     </a>
                 </header>
 
-                <LazyDemo changeName={this.changeName}/>
+                {/*<LazyDemo changeName={this.changeName}/> */}
+                <App a={'sdsd'}/>
             </div>
         );
     }
